@@ -4,6 +4,8 @@ public class Object {
     float x, y;
     float width, height;
     float vx, vy;
+    int cicle;
+    int cicle_max;
 
     public Object(float x, float y, float width, float height) {
         this.x = x;
@@ -21,6 +23,7 @@ public class Object {
     }
 
     public void move(){
+        cicle ++;
         x += vx;
         y += vy;
     }
