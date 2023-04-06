@@ -47,8 +47,8 @@ public class ScreenGame implements Screen {
         skies[0] = new Sky(SCR_WIDTH/2f, SCR_HEIGHT/2f, SCR_WIDTH, SCR_HEIGHT);
         skies[1] = new Sky(SCR_WIDTH*3f/2, SCR_HEIGHT/2f, SCR_WIDTH, SCR_HEIGHT);
 
-        trees[0] = new Tree(SCR_WIDTH/2f, 220, SCR_WIDTH + 4, 120);
-        trees[1] = new Tree(SCR_WIDTH*3f/2, 220, SCR_WIDTH + 4, 120);
+        trees[0] = new Tree(SCR_WIDTH/2f, 224, SCR_WIDTH + 4, 120);
+        trees[1] = new Tree(SCR_WIDTH*3f/2, 224, SCR_WIDTH + 4, 120);
 
     }
 
