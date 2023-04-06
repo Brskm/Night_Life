@@ -21,7 +21,7 @@ public class ScreenSettings implements Screen {
         btnEnterName = new TextButton(gg.fontLarge, "Cat's name: "+playerName, 100, 600);
         btnSound = new TextButton(gg.fontLarge, "Sound ON", 100, 500);
         btnMusic = new TextButton(gg.fontLarge, "Music ON", 100, 400);
-        btnClearTable = new TextButton(gg.fontLarge, "Clear record table", 100, 300);
+        btnClearTable = new TextButton(gg.fontLarge, "Delete high score", 100, 300);
         btnExit = new TextButton(gg.fontLarge, "Menu", 100, 200);
         imgBG = new Texture("bg/settBg.png");
         keyboard = new InputKeyboard(SCR_WIDTH, SCR_HEIGHT, 7);
@@ -57,11 +57,11 @@ public class ScreenSettings implements Screen {
                     btnMusic.setText(gg.musicOn ? "Music ON" : "Music OFF");
                 }
                 if(btnClearTable.hit(gg.touch.x, gg.touch.y)){
-                    btnClearTable.text = "Table cleared";
+                    btnClearTable.text = "High score reset";
                 }
                 if (btnExit.hit(gg.touch.x, gg.touch.y)) {
                     gg.setScreen(gg.screenIntro);
-                    btnClearTable.text = "Clear record table";
+                    btnClearTable.text = "Delete high score";
                 }
             }
         }
