@@ -7,8 +7,9 @@ import com.badlogic.gdx.math.MathUtils;
 public class Tree extends Object{
     public Tree(float x, float y, float width, float height) {
         super(x, y, width, height);
-        vx = -1;
-        cicle_max = 4;
+        vx = -6;
+        cicle_max = 3;
+        imgtree = false;
     }
     @Override
     public void move() {
@@ -16,7 +17,7 @@ public class Tree extends Object{
         if(outOfScreen()) {
             x = SCR_WIDTH*3/2;
             change ++;
-            System.out.println(change);
+            imgtree = chBg();
         }
     }
     boolean outOfScreen(){
@@ -26,7 +27,7 @@ public class Tree extends Object{
     boolean chBg(){
         if (change == cicle_max){
             change = 0;
-            cicle_max = MathUtils.random(3, 6);
+            cicle_max = MathUtils.random(3, 5);
             return true;
         }
         else {

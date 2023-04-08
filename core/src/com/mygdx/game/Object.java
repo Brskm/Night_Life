@@ -6,6 +6,7 @@ public class Object {
     float vx, vy;
     int cicle;
     int cicle_max;
+    boolean imgtree;
 
     public Object(float x, float y, float width, float height) {
         this.x = x;
