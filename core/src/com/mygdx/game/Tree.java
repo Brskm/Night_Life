@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.MathUtils;
 public class Tree extends Object{
     public Tree(float x, float y, float width, float height) {
         super(x, y, width, height);
-        vx = -6;
-        cicle_max = 3;
+        vx = -1;
+        cicle_max = 1;
         imgtree = false;
     }
     @Override

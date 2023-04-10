@@ -8,7 +8,7 @@ public class Cow extends Object{
     public Cow(float x, float y, float width, float height) {
         super(x, y, width, height);
         vy = 0.5f;
-        vx = -6;
+        vx = -1;
         cicle_max = 45;
     }
     @Override

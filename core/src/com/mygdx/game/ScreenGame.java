@@ -46,7 +46,7 @@ public class ScreenGame implements Screen {
 
         cat = new Cat(SCR_WIDTH/4f + 50, 200, 150, 150);
 
-        cow = new Cow(148, 231, 36, 27);
+        cow = new Cow(156, 231, 36, 27);
 
         grasses[0] = new Grass(SCR_WIDTH/2f, 104, SCR_WIDTH + 8, 208);
         grasses[1] = new Grass(SCR_WIDTH*3f/2, 104, SCR_WIDTH + 8, 208);
@@ -78,7 +78,6 @@ public class ScreenGame implements Screen {
         for (Tree t: trees) {
             //gg.batch.draw(t.imgtree? imgTree1:imgTree0, t.scrX(), t.scrY(), t.width, t.imgtree? 168:t.height);
             if (t.imgtree){
-                System.out.println(t.scrX());
                 gg.batch.draw(imgTree1, t.scrX(), t.scrY(), t.width, 168);
                 gg.batch.draw(imgCow, cow.scrX(), cow.scrY(), cow.width, cow.height);
                 if (t.scrX() == 1022){
@@ -128,10 +127,14 @@ public class ScreenGame implements Screen {
 
     @Override
     public void dispose() {
+        for (int j = 0; j < imgCat.length; j++) {
+            imgCat[j].dispose();
+        }
         imgMoon.dispose();
         imgSky.dispose();
         imgGrass.dispose();
         imgTree1.dispose();
         imgTree0.dispose();
+        imgCow.dispose();
     }
 }
