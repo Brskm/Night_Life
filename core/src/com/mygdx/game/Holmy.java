@@ -2,8 +2,8 @@ package com.mygdx.game;
 
 import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 
-public class Sky extends Object{
-    public Sky(float x, float y, float width, float height) {
+public class Holmy extends Object{
+    public Holmy(float x, float y, float width, float height) {
         super(x, y, width, height);
         vx = -0.5f;
     }

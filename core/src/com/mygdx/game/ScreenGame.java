@@ -3,6 +3,8 @@ package com.mygdx.game;
 import static com.mygdx.game.MyGdxGame.SCR_HEIGHT;
 import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -17,11 +19,12 @@ public class ScreenGame implements Screen {
     Texture imgGrass;
     Texture imgMoon;
     Texture imgTree0;
+    Texture imgHolm;
     Texture imgTree1;
     Texture[] imgCat = new Texture[4];
 
     Grass[] grasses = new Grass[2];
-    Sky[] skies = new Sky[2];
+    Holmy[] holmies = new Holmy[2];
     Tree[] trees = new Tree[2];
     Cow cow;
     int treeim;
@@ -37,12 +40,13 @@ public class ScreenGame implements Screen {
         imgTree0 = new Texture("bg/tree0.png");
         imgTree1 = new Texture("bg/tree1.png");
         imgCow = new Texture("cow.png");
+        imgHolm = new Texture("bg/holmy.png");
+
 
 
         for (int j = 0; j < imgCat.length; j++) {
             imgCat[j] = new Texture("cats/cat"+j+".png");
         }
-        timeStart = TimeUtils.millis();
 
         cat = new Cat(SCR_WIDTH/4f + 50, 200, 150, 150);
 
@@ -51,8 +55,8 @@ public class ScreenGame implements Screen {
         grasses[0] = new Grass(SCR_WIDTH/2f, 104, SCR_WIDTH + 8, 208);
         grasses[1] = new Grass(SCR_WIDTH*3f/2, 104, SCR_WIDTH + 8, 208);
 
-        skies[0] = new Sky(SCR_WIDTH/2f, SCR_HEIGHT/2f, SCR_WIDTH, SCR_HEIGHT);
-        skies[1] = new Sky(SCR_WIDTH*3f/2, SCR_HEIGHT/2f, SCR_WIDTH, SCR_HEIGHT);
+        holmies[0] = new Holmy(SCR_WIDTH/2f, 223, SCR_WIDTH, 168);
+        holmies[1] = new Holmy(SCR_WIDTH*3f/2, 223, SCR_WIDTH, 168);
 
         trees[0] = new Tree(SCR_WIDTH/2f, 224, SCR_WIDTH + 4, 120);
         trees[1] = new Tree(SCR_WIDTH*3f/2, 224, SCR_WIDTH + 4, 120);
@@ -61,19 +65,29 @@ public class ScreenGame implements Screen {
 
     @Override
     public void show() {
-
+        timeStart = TimeUtils.millis();
     }
 
     @Override
     public void render(float delta) {
+        //нажатия
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            System.out.println("Up kitty up");
+        }
+
+        //события
         timeCurrent = TimeUtils.millis() - timeStart;
+        for (Grass s: grasses) s.move();
+        for (Holmy k: holmies) k.move();
+        for (Tree t: trees) t.move();
+
+        //отрисовка
         gg.camera.update();
         gg.batch.setProjectionMatrix(gg.camera.combined);
         gg.batch.begin();
-        for (Grass s: grasses) s.move();
-        for (Sky k: skies) k.move();
-        for (Tree t: trees) t.move();
-        for (Sky k: skies) gg.batch.draw(imgSky, k.scrX(), k.scrY(), k.width, k.height);
+
+        gg.batch.draw(imgSky, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        for (Holmy k: holmies) gg.batch.draw(imgHolm, k.scrX(), k.scrY(), k.width, k.height);
         int index = 0;
         for (Tree t: trees) {
             //gg.batch.draw(t.imgtree? imgTree1:imgTree0, t.scrX(), t.scrY(), t.width, t.imgtree? 168:t.height);
