@@ -73,6 +73,7 @@ public class ScreenGame implements Screen {
         //нажатия
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             System.out.println("Up kitty up");
+            cat.state = 1;
         }
 
         //события
