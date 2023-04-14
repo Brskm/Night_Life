@@ -21,13 +21,12 @@ public class ScreenGame implements Screen {
     Texture imgTree0;
     Texture imgHolm;
     Texture imgTree1;
-    Texture[] imgCat = new Texture[4];
+    Texture[] imgCat = new Texture[9];
 
     Grass[] grasses = new Grass[2];
     Holmy[] holmies = new Holmy[2];
     Tree[] trees = new Tree[2];
     Cow cow;
-    int treeim;
 
     long timeStart, timeCurrent;
 
@@ -72,8 +71,9 @@ public class ScreenGame implements Screen {
     public void render(float delta) {
         //нажатия
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            System.out.println("Up kitty up");
             cat.state = 1;
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+            cat.state = 2;
         }
 
         //события
@@ -108,7 +108,7 @@ public class ScreenGame implements Screen {
         gg.batch.draw(imgMoon, 180, 530, 102, 144);
         gg.fontSmall.draw(gg.batch, "high score: ", SCR_WIDTH - 360, SCR_HEIGHT-15);
         gg.fontSmall.draw(gg.batch, tmToStr(timeCurrent), SCR_WIDTH - 150, SCR_HEIGHT-65);
-        gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.scrY(), cat.width, cat.height);
+        gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/6> 4? 204:cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.faza/6> 4? 124:cat.scrY(), cat.width, cat.height);
         cat.move();
         cow.move();
         gg.batch.end();
