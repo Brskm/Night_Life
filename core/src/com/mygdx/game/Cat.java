@@ -45,7 +45,7 @@ public class Cat extends Object{
         toOriginal();
 
         faza = 24;
-        vy = 20f * direction(cicle) - mnoj * direction(cicle);
+        vy = 25f * direction(cicle) - mnoj * direction(cicle);
         mnoj += 1;
         if (y < sy) {
             mnoj = 0;
