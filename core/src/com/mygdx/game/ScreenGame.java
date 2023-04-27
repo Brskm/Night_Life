@@ -25,7 +25,7 @@ public class ScreenGame implements Screen {
     Texture imgHolm;
     Texture imgTree1;
     Texture[] imgCat = new Texture[9];
-    Texture[] imgBarrier = new Texture[2];
+    Texture[] imgBarrier = new Texture[3];
 
     Grass[] grasses = new Grass[2];
     Holmy[] holmies = new Holmy[2];

@@ -4,7 +4,6 @@ import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 
 public class Cat extends Object{
     static final int GO = 0, JUMP = 1, DOWN = 2;
-    int lives = 3;
     int faza, nFaz = 24;
     int cicle, mnoj, cicleDw, fazaDw;
     int state = GO;
@@ -84,6 +83,10 @@ public class Cat extends Object{
     void toOriginal(){
         width = sw;
         height = sh;
+    }
+
+    boolean hit(float bx, float by){
+        return (x < bx && bx < x+width && y < by && by < y+height);
     }
 }
 

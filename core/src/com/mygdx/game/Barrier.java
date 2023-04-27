@@ -23,10 +23,8 @@ public class Barrier extends Object{
         outOfScreen();
     }
 
-    void hit(float catx, float caty){
-    }
-
     void whType(){
+        System.out.println(type);
         switch (type){
             case 0:
                 width = 102;
@@ -34,6 +32,9 @@ public class Barrier extends Object{
             case 1:
                 width = 84;
                 height = 108;
+            case 2:
+                width = 100;
+                height = 70;
         }
     }
 
