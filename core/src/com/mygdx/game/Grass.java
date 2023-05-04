@@ -6,7 +6,7 @@ public class Grass extends Object{
     int cicle;
     public Grass(float x, float y, float width, float height) {
         super(x, y, width, height);
-        vx = -6;
+        vx = -7;
     }
     @Override
     public void move() {

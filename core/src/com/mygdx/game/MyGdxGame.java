@@ -23,6 +23,7 @@ public class MyGdxGame extends Game {
 	ScreenAbout screenAbout;
 	ScreenOver screenOver;
 
+	String fin_time;
 	public boolean soundOn = true;
 	public boolean musicOn = true;
 

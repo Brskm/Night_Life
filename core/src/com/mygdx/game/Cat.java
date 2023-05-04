@@ -1,9 +1,10 @@
 package com.mygdx.game;
 
+import static com.mygdx.game.MyGdxGame.SCR_HEIGHT;
 import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 
 public class Cat extends Object{
-    static final int GO = 0, JUMP = 1, DOWN = 2;
+    static final int GO = 0, JUMP = 1, DOWN = 2, DEAD = 3;
     int faza, nFaz = 24;
     int cicle, mnoj, cicleDw, fazaDw;
     int state = GO;
@@ -24,6 +25,7 @@ public class Cat extends Object{
         super.move();
         changePhase();
         changeState();
+        outOfScreen();
     }
 
     void changePhase(){
@@ -37,6 +39,8 @@ public class Cat extends Object{
             jump();
         } else if (state == DOWN) {
             down();
+        } else if (state == DEAD) {
+            dead();
         }
     }
     void jump() {
@@ -78,6 +82,11 @@ public class Cat extends Object{
             }
         }
     }
+    void dead(){
+        cicleDw = 0;
+        fazaDw = 0;
+        faza = 24;
+    }
     int direction(int cle){
         return cle > 30 ? -1 : 1;
     }
@@ -89,6 +98,10 @@ public class Cat extends Object{
     boolean hit(float bx, float by, float bw, float bh){
         hitted = width / 2 + bw / 3 > Math.abs(x - bx) && height / 2 + bh / 3 > Math.abs(y - by);
         return hitted;
+    }
+
+    boolean outOfScreen(){
+        return y < -SCR_HEIGHT/2;
     }
 }
 

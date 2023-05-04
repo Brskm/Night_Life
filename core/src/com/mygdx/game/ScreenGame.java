@@ -33,8 +33,9 @@ public class ScreenGame implements Screen {
     ArrayList<Barrier> barriers = new ArrayList<>();
     Cow cow;
 
+    boolean alive = true;
     long timeStart, timeCurrent;
-    long barrierLastSpawn, barrierInterval = 3000;
+    long barrierLastSpawn, barrierInterval = 3500;
 
     public ScreenGame(MyGdxGame myGG){
         gg = myGG;
@@ -89,28 +90,36 @@ public class ScreenGame implements Screen {
 
         //события
         timeCurrent = TimeUtils.millis() - timeStart;
-        for (Grass s: grasses) s.move();
-        for (Holmy k: holmies) k.move();
-        for (Tree t: trees) t.move();
-        spawnEnemyes();
         cat.move();
-        for (int i = barriers.size()-1; i >= 0; i--) {
-            barriers.get(i).move();
-
-            if(barriers.get(i).outOfScreen()) {
-                barriers.remove(i);
-            }
+        if (cat.outOfScreen()){
+            gameOver();
         }
-        for (Barrier b: barriers) {
-            if (cat.hit(b.x, b.y, b.width, b.height)){
-                cat.hitted = false;
-                barriers.clear();
-                gg.setScreen(gg.screenOver);
-                break;
+        if (alive){
+            for (Grass s: grasses) s.move();
+            for (Holmy k: holmies) k.move();
+            for (Tree t: trees) t.move();
+            spawnEnemyes();
+            for (int i = barriers.size()-1; i >= 0; i--) {
+                barriers.get(i).move();
 
+                if(barriers.get(i).outOfScreen()) {
+                    barriers.remove(i);
+                }
             }
+            for (Barrier b: barriers) {
+                if (cat.hit(b.x, b.y, b.width, b.height)){
+                    cat.hitted = false;
+                    alive = false;
+                    cat.state = 3;
+                    gg.fin_time = tmToStr(timeCurrent);
+                    cat.vy = -7;
+                    break;
+
+                }
+            }
+            cow.move();
         }
-        cow.move();
+
 
         //отрисовка
         gg.camera.update();
@@ -148,6 +157,7 @@ public class ScreenGame implements Screen {
         String sec = "" + time/1000%60/10 + time/1000%60%10;
         return min+":"+sec;
     }
+
 
     @Override
     public void resize(int width, int height) {
@@ -187,5 +197,12 @@ public class ScreenGame implements Screen {
             barrierLastSpawn = TimeUtils.millis();
             barrierInterval = MathUtils.random(1000, 3000);
         }
+    }
+    void gameOver(){
+        gg.setScreen(gg.screenOver);
+        cat.y = 200;
+        cat.vy = 0;
+        barriers.clear();
+        cat.state = 0;
     }
 }
