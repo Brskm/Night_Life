@@ -21,6 +21,7 @@ public class MyGdxGame extends Game {
 	ScreenGame screenGame;
 	ScreenSettings screenSettings;
 	ScreenAbout screenAbout;
+	ScreenOver screenOver;
 
 	public boolean soundOn = true;
 	public boolean musicOn = true;
@@ -38,6 +39,7 @@ public class MyGdxGame extends Game {
 		screenSettings = new ScreenSettings(this);
 		screenAbout = new ScreenAbout(this);
 		screenGame = new ScreenGame(this);
+		screenOver = new ScreenOver(this);
 		setScreen(screenIntro);
 	}
 
@@ -61,7 +63,7 @@ public class MyGdxGame extends Game {
 		parameter.size = 60;
 		fontLarge = generator.generateFont(parameter);
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("pixel.ttf"));
-		parameter.size = 90;
+		parameter.size = 100;
 		parameter.color = Color.valueOf("ffffff");
 		fontTitle = generator.generateFont(parameter);
 		generator.dispose();

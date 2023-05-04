@@ -9,6 +9,7 @@ public class Cat extends Object{
     int state = GO;
     float sy, sx, sw, sh;
     boolean change = true;
+    boolean hitted = false;
 
     public Cat(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -86,7 +87,8 @@ public class Cat extends Object{
     }
 
     boolean hit(float bx, float by, float bw, float bh){
-        return width / 2 + bw / 3 > Math.abs(x - bx) && height / 2 + bh / 3 > Math.abs(y - by);
+        hitted = width / 2 + bw / 3 > Math.abs(x - bx) && height / 2 + bh / 3 > Math.abs(y - by);
+        return hitted;
     }
 }
 

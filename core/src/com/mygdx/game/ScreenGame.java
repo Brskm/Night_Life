@@ -102,9 +102,12 @@ public class ScreenGame implements Screen {
             }
         }
         for (Barrier b: barriers) {
-            System.out.println(cat.x);
             if (cat.hit(b.x, b.y, b.width, b.height)){
-                gg.setScreen(gg.screenIntro);
+                cat.hitted = false;
+                barriers.clear();
+                gg.setScreen(gg.screenOver);
+                break;
+
             }
         }
         cow.move();
