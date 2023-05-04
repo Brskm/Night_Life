@@ -4,7 +4,9 @@ import static com.mygdx.game.MyGdxGame.SCR_HEIGHT;
 import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 
 public class ScreenIntro implements Screen {
@@ -21,7 +23,7 @@ public class ScreenIntro implements Screen {
     Texture imPlayHit;
 
     ImgButton BtAbout, BtSett, BtPlay;
-
+    Music sndMusic;
 
     public ScreenIntro(MyGdxGame myGG){
         gg = myGG;
@@ -40,10 +42,16 @@ public class ScreenIntro implements Screen {
         BtSett = new ImgButton(80, 325, 300, 120);
         BtAbout = new ImgButton(80, 170, 300, 120);
 
+        sndMusic = Gdx.audio.newMusic(Gdx.files.internal("background.mp3"));
+        sndMusic.setLooping(true);
+        sndMusic.setVolume(0.2f);
     }
     @Override
     public void show() {
-
+        Preferences pref = Gdx.app.getPreferences("data");
+        System.out.println(pref.getBoolean("music"));
+        if(pref.getBoolean("music")) sndMusic.play();
+        else sndMusic.stop();
     }
 
     @Override
@@ -65,6 +73,7 @@ public class ScreenIntro implements Screen {
             }
             if(BtPlay.hit(gg.touch.x, gg.touch.y)){
                 PlHit = !PlHit;
+                gg.screenGame.alive = true;
                 gg.setScreen(gg.screenGame);
             }
         }

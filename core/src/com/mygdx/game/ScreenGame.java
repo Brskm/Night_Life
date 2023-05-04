@@ -5,8 +5,10 @@ import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -72,6 +74,7 @@ public class ScreenGame implements Screen {
         trees[0] = new Tree(SCR_WIDTH/2f, 224, SCR_WIDTH + 4, 120);
         trees[1] = new Tree(SCR_WIDTH*3f/2, 224, SCR_WIDTH + 4, 120);
 
+
     }
 
     @Override
@@ -112,6 +115,7 @@ public class ScreenGame implements Screen {
                     alive = false;
                     cat.state = 3;
                     gg.fin_time = tmToStr(timeCurrent);
+                    changeRec(timeCurrent);
                     cat.vy = -7;
                     break;
 
@@ -128,7 +132,6 @@ public class ScreenGame implements Screen {
 
         gg.batch.draw(imgSky, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         for (Holmy k: holmies) gg.batch.draw(imgHolm, k.scrX(), k.scrY(), k.width, k.height);
-        int index = 0;
         for (Tree t: trees) {
             //gg.batch.draw(t.imgtree? imgTree1:imgTree0, t.scrX(), t.scrY(), t.width, t.imgtree? 168:t.height);
             if (t.imgtree){
@@ -141,11 +144,10 @@ public class ScreenGame implements Screen {
             else{
                 gg.batch.draw(imgTree0, t.scrX(), t.scrY(), t.width, t.height);
             }
-            index++;
         }
         for (Grass s: grasses) gg.batch.draw(imgGrass, s.scrX(), s.scrY(), s.width, s.height);
         gg.batch.draw(imgMoon, 180, 530, 102, 144);
-        gg.fontSmall.draw(gg.batch, "high score: ", SCR_WIDTH - 360, SCR_HEIGHT-15);
+        gg.fontSmall.draw(gg.batch, "Best score: " + tmToStr(setRecord()), SCR_WIDTH - 411, SCR_HEIGHT-15);
         gg.fontSmall.draw(gg.batch, tmToStr(timeCurrent), SCR_WIDTH - 150, SCR_HEIGHT-65);
         for (Barrier b: barriers) gg.batch.draw(imgBarrier[b.type], b.scrX(), b.scrY(), b.width, b.height);
         gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/6> 4? 204:cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.faza/6> 4? 124:cat.scrY(), cat.width, cat.height);
@@ -204,5 +206,24 @@ public class ScreenGame implements Screen {
         cat.vy = 0;
         barriers.clear();
         cat.state = 0;
+    }
+    long setRecord(){
+        Preferences pref = Gdx.app.getPreferences("data");
+        if(pref.contains("record")) {
+            return pref.getLong("record");
+        }
+        else {
+            pref.putLong("record", 0);
+            pref.flush();
+            return 0;
+        }
+
+    }
+    void changeRec(long time){
+        Preferences pref = Gdx.app.getPreferences("data");
+        if (pref.getLong("record") < time){
+            pref.putLong("record", time);
+            pref.flush();
+        }
     }
 }

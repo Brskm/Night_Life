@@ -24,8 +24,8 @@ public class MyGdxGame extends Game {
 	ScreenOver screenOver;
 
 	String fin_time;
-	public boolean soundOn = true;
-	public boolean musicOn = true;
+	public boolean soundOn;
+	public boolean musicOn;
 
 
 	@Override

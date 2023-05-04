@@ -47,7 +47,7 @@ public class ScreenOver implements Screen {
         gg.batch.begin();
         gg.batch.draw(imgBG, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         gg.fontTitle.draw(gg.batch, "Game Over", 220 , SCR_HEIGHT/2f + 200);
-        gg.fontSmall.draw(gg.batch, "Result: " + gg.fin_time, 220 , 500);
+        gg.fontSmall.draw(gg.batch, gg.screenSettings.playerName + "'s result: " + gg.fin_time, 220 , 500);
         btnExit.font.draw(gg.batch, btnExit.text, btnExit.x, btnExit.y);
         btnRetry.font.draw(gg.batch, btnRetry.text, btnRetry.x, btnRetry.y);
         gg.batch.end();
