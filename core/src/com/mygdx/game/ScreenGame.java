@@ -36,8 +36,8 @@ public class ScreenGame implements Screen {
     long timeStart, timeCurrent;
     long barrierLastSpawn, barrierInterval = 3000;
 
-    public ScreenGame(MyGdxGame myGdxGame){
-        gg = myGdxGame;
+    public ScreenGame(MyGdxGame myGG){
+        gg = myGG;
 
         imgSky = new Texture("bg/sky.png");
         imgGrass = new Texture("bg/grass.png");
@@ -93,12 +93,21 @@ public class ScreenGame implements Screen {
         for (Holmy k: holmies) k.move();
         for (Tree t: trees) t.move();
         spawnEnemyes();
+        cat.move();
         for (int i = barriers.size()-1; i >= 0; i--) {
             barriers.get(i).move();
+
             if(barriers.get(i).outOfScreen()) {
                 barriers.remove(i);
             }
         }
+        for (Barrier b: barriers) {
+            System.out.println(cat.x);
+            if (cat.hit(b.x, b.y, b.width, b.height)){
+                gg.setScreen(gg.screenIntro);
+            }
+        }
+        cow.move();
 
         //отрисовка
         gg.camera.update();
@@ -128,8 +137,6 @@ public class ScreenGame implements Screen {
         gg.fontSmall.draw(gg.batch, tmToStr(timeCurrent), SCR_WIDTH - 150, SCR_HEIGHT-65);
         for (Barrier b: barriers) gg.batch.draw(imgBarrier[b.type], b.scrX(), b.scrY(), b.width, b.height);
         gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/6> 4? 204:cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.faza/6> 4? 124:cat.scrY(), cat.width, cat.height);
-        cat.move();
-        cow.move();
         gg.batch.end();
     }
 
@@ -173,7 +180,6 @@ public class ScreenGame implements Screen {
     }
     void spawnEnemyes(){
         if(barrierLastSpawn + barrierInterval < TimeUtils.millis()){
-            System.out.println(imgBarrier.length);
             barriers.add(new Barrier(MathUtils.random(imgBarrier.length - 1)));
             barrierLastSpawn = TimeUtils.millis();
             barrierInterval = MathUtils.random(1000, 3000);

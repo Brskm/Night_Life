@@ -5,6 +5,8 @@ import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Barrier extends Object{
+    static final int BIN = 0, CRAPIVA = 1, ROCK = 2;
+
     int cicle = 12;
     int type;
 
@@ -24,31 +26,19 @@ public class Barrier extends Object{
     }
 
     void whType(){
-        System.out.println(type);
-        if (type == 0){
-            width = 102;
-            height = 114;
-        } else if (type == 1) {
-            width = 84;
-            height = 108;
-        } else if (type == 2) {
-            width = 100;
-            height = 70;
-        }
-        /*
         switch (type){
-            case 0:
+            case BIN:
                 width = 102;
                 height = 114;
-            case 1:
+                break;
+            case CRAPIVA:
                 width = 84;
                 height = 108;
-            case 2:
+                break;
+            case ROCK:
                 width = 100;
                 height = 70;
         }
-
-         */
     }
 
     boolean outOfScreen(){

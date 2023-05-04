@@ -85,8 +85,8 @@ public class Cat extends Object{
         height = sh;
     }
 
-    boolean hit(float bx, float by){
-        return (x < bx && bx < x+width && y < by && by < y+height);
+    boolean hit(float bx, float by, float bw, float bh){
+        return width / 2 + bw / 3 > Math.abs(x - bx) && height / 2 + bh / 3 > Math.abs(y - by);
     }
 }
 

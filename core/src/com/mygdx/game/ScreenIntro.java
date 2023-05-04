@@ -23,8 +23,8 @@ public class ScreenIntro implements Screen {
     ImgButton BtAbout, BtSett, BtPlay;
 
 
-    public ScreenIntro(MyGdxGame myGdxGame){
-        gg = myGdxGame;
+    public ScreenIntro(MyGdxGame myGG){
+        gg = myGG;
 
         imgBG = new Texture("main.png");
 
