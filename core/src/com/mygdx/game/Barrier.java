@@ -16,7 +16,7 @@ public class Barrier extends Object{
         whType();
         x = SCR_WIDTH + width;
         y = 180;
-        vx = -7;
+        vx = -8;
     }
 
     @Override

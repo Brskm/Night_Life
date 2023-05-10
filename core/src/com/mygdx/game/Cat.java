@@ -9,7 +9,6 @@ public class Cat extends Object{
     int cicle, mnoj, cicleDw, fazaDw;
     int state = GO;
     float sy, sx, sw, sh;
-    boolean change = true;
     boolean hitted = false;
 
     public Cat(float x, float y, float width, float height) {

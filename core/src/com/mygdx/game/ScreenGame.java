@@ -37,7 +37,7 @@ public class ScreenGame implements Screen {
 
     boolean alive = true;
     long timeStart, timeCurrent;
-    long barrierLastSpawn, barrierInterval = 3500;
+    long barrierLastSpawn, barrierInterval = 4000;
 
     public ScreenGame(MyGdxGame myGG){
         gg = myGG;
@@ -85,12 +85,13 @@ public class ScreenGame implements Screen {
     @Override
     public void render(float delta) {
         //нажатия
-        if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            cat.state = 1;
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-            cat.state = 2;
+        if (alive) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                cat.state = 1;
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                cat.state = 2;
+            }
         }
-
         //события
         timeCurrent = TimeUtils.millis() - timeStart;
         cat.move();
