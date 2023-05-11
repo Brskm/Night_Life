@@ -24,7 +24,7 @@ public class ScreenSettings implements Screen {
         btnMusic = new TextButton(gg.fontLarge, "Music ON", 100, 400);
         btnDeleteScore = new TextButton(gg.fontLarge, "Delete high score", 100, 300);
         btnExit = new TextButton(gg.fontLarge, "Menu", 100, 200);
-        imgBG = new Texture("bg/settBg.png");
+        imgBG = new Texture("bg/settBg2.png");
         keyboard = new InputKeyboard(SCR_WIDTH, SCR_HEIGHT, 7);
         loadSettings();
     }

@@ -62,7 +62,7 @@ public class ScreenGame implements Screen {
 
         cat = new Cat(SCR_WIDTH/4f + 50, 200, 150, 150);
 
-        cow = new Cow(156, 231, 36, 27);
+        cow = new Cow(210, 231, 36, 27);
 
 
         grasses[0] = new Grass(SCR_WIDTH/2f, 104, SCR_WIDTH + 8, 208);
@@ -71,8 +71,8 @@ public class ScreenGame implements Screen {
         holmies[0] = new Holmy(SCR_WIDTH/2f, 223, SCR_WIDTH, 168);
         holmies[1] = new Holmy(SCR_WIDTH*3f/2, 223, SCR_WIDTH, 168);
 
-        trees[0] = new Tree(SCR_WIDTH/2f, 224, SCR_WIDTH + 4, 120);
-        trees[1] = new Tree(SCR_WIDTH*3f/2, 224, SCR_WIDTH + 4, 120);
+        trees[0] = new Tree(SCR_WIDTH/2f, 244, SCR_WIDTH + 4, 146);
+        trees[1] = new Tree(SCR_WIDTH*3f/2, 244, SCR_WIDTH + 4, 146);
 
 
     }
@@ -86,7 +86,7 @@ public class ScreenGame implements Screen {
     public void render(float delta) {
         //нажатия
         if (alive) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP) || Gdx.input.justTouched()) {
                 cat.state = 1;
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
                 cat.state = 2;

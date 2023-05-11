@@ -16,7 +16,7 @@ public class ScreenOver implements Screen {
 
     public ScreenOver(MyGdxGame myGG){
         gg = myGG;
-        imgBG = new Texture("bg/settBg.png");
+        imgBG = new Texture("bg/settBg2.png");
         btnExit = new TextButton(gg.fontLarge, "Menu", 80, 280);
         btnRetry = new TextButton(gg.fontLarge, "Retry", 80, 420);
 
@@ -46,8 +46,8 @@ public class ScreenOver implements Screen {
         gg.batch.setProjectionMatrix(gg.camera.combined);
         gg.batch.begin();
         gg.batch.draw(imgBG, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        gg.fontTitle.draw(gg.batch, "Game Over", 220 , SCR_HEIGHT/2f + 200);
-        gg.fontSmall.draw(gg.batch, gg.screenSettings.playerName + "'s result: " + gg.fin_time, 220 , 500);
+        gg.fontTitle.draw(gg.batch, "Game Over", 380 , SCR_HEIGHT/2f + 200);
+        gg.fontSmall.draw(gg.batch, gg.screenSettings.playerName + "'s result: " + gg.fin_time, 380 , 500);
         btnExit.font.draw(gg.batch, btnExit.text, btnExit.x, btnExit.y);
         btnRetry.font.draw(gg.batch, btnRetry.text, btnRetry.x, btnRetry.y);
         gg.batch.end();

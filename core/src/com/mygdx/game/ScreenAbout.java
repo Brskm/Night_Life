@@ -16,7 +16,7 @@ public class ScreenAbout implements Screen {
     public ScreenAbout(MyGdxGame myGdxGame){
         gg = myGdxGame;
 
-        imgBG = new Texture("bg/settBg.png");
+        imgBG = new Texture("bg/settBg2.png");
         btnExit = new TextButton(gg.fontLarge, "Menu", 80, 100);
 
 
