@@ -27,7 +27,7 @@ public class ScreenGame implements Screen {
     Texture imgHolm;
     Texture imgTree1;
     Texture[] imgCat = new Texture[9];
-    Texture[] imgBarrier = new Texture[3];
+    Texture[] imgBarrier = new Texture[4];
 
     Grass[] grasses = new Grass[2];
     Holmy[] holmies = new Holmy[2];
@@ -138,7 +138,7 @@ public class ScreenGame implements Screen {
             if (t.imgtree){
                 gg.batch.draw(imgTree1, t.scrX(), t.scrY(), t.width, 168);
                 gg.batch.draw(imgCow, cow.scrX(), cow.scrY(), cow.width, cow.height);
-                if (t.scrX() == 1022){
+                if (t.scrX() == 1222){
                     trees[1].imgtree = false;
                 }
             }
@@ -151,7 +151,8 @@ public class ScreenGame implements Screen {
         gg.fontSmall.draw(gg.batch, "Best score: " + tmToStr(setRecord()), SCR_WIDTH - 411, SCR_HEIGHT-15);
         gg.fontSmall.draw(gg.batch, tmToStr(timeCurrent), SCR_WIDTH - 150, SCR_HEIGHT-65);
         for (Barrier b: barriers) gg.batch.draw(imgBarrier[b.type], b.scrX(), b.scrY(), b.width, b.height);
-        gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/6> 4? 204:cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.faza/6> 4? 124:cat.scrY(), cat.width, cat.height);
+        System.out.println(cat.faza);
+        gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/6> 4? 306:cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.faza/6> 4? 124:cat.scrY(), cat.width, cat.height);
         gg.batch.end();
     }
 

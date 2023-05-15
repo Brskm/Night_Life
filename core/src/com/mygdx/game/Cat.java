@@ -61,19 +61,20 @@ public class Cat extends Object{
     void down(){
         cicleDw ++;
         if (y > sy){
-            vy = -7;
+            vy = -3;
+            System.out.println("wtf");
         }
         else {
             vy = 0;
         }
+
         width = 184;
         height= 92;
+
         faza = (5 + cicleDw/6) * 6;
-        System.out.println(faza);
         if (faza > 48){
             faza = 30;
             cicleDw = 0;
-            System.out.println(505);
             if (fazaDw++ > 2) {
                 fazaDw = 0;
                 toOriginal();
@@ -84,6 +85,7 @@ public class Cat extends Object{
     void dead(){
         cicleDw = 0;
         fazaDw = 0;
+        toOriginal();
         faza = 24;
     }
     int direction(int cle){

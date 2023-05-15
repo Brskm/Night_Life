@@ -5,9 +5,8 @@ import static com.mygdx.game.MyGdxGame.SCR_WIDTH;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Barrier extends Object{
-    static final int BIN = 0, CRAPIVA = 1, ROCK = 2;
+    static final int BIN = 0, CRAPIVA = 1, ROCK = 2, RIBA = 3;
 
-    int cicle = 12;
     int type;
 
     public Barrier(int type) {
@@ -15,7 +14,11 @@ public class Barrier extends Object{
         this.type = type;
         whType();
         x = SCR_WIDTH + width;
-        y = 180;
+        if (type == RIBA){
+            y = 300;
+        }else {
+            y = 180;
+        }
         vx = -8;
     }
 
@@ -38,6 +41,10 @@ public class Barrier extends Object{
             case ROCK:
                 width = 100;
                 height = 70;
+                break;
+            case RIBA:
+                width = 108;
+                height = 84;
         }
     }
 
