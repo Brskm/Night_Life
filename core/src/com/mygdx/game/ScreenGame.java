@@ -151,7 +151,6 @@ public class ScreenGame implements Screen {
         gg.fontSmall.draw(gg.batch, "Best score: " + tmToStr(setRecord()), SCR_WIDTH - 411, SCR_HEIGHT-15);
         gg.fontSmall.draw(gg.batch, tmToStr(timeCurrent), SCR_WIDTH - 150, SCR_HEIGHT-65);
         for (Barrier b: barriers) gg.batch.draw(imgBarrier[b.type], b.scrX(), b.scrY(), b.width, b.height);
-        System.out.println(cat.faza);
         gg.batch.draw(imgCat[cat.cicle == 3 && cat.faza/6 == 2? 2:cat.faza/6==2? 0:cat.faza/6], cat.faza/6> 4? 306:cat.faza/5 %2 == 0? cat.scrX():cat.scrX() - 2, cat.faza/6> 4? 124:cat.scrY(), cat.width, cat.height);
         gg.batch.end();
     }

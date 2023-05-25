@@ -13,6 +13,10 @@ public class ScreenAbout implements Screen {
     Texture imgBG;
     TextButton btnExit;
 
+    String textAbout =  "This game was created as a learning project \n" +
+        "at samsung it school to show \n" +
+        "what i have learned this year";
+
     public ScreenAbout(MyGdxGame myGdxGame){
         gg = myGdxGame;
 
@@ -40,6 +44,7 @@ public class ScreenAbout implements Screen {
         gg.batch.setProjectionMatrix(gg.camera.combined);
         gg.batch.begin();
         gg.batch.draw(imgBG, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        gg.fontSmall.draw(gg.batch, textAbout, 100, 500);
         btnExit.font.draw(gg.batch, btnExit.text, btnExit.x, btnExit.y);
         gg.batch.end();
 
